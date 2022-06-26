@@ -2,10 +2,15 @@
   <div>
     <ul>
       <li 
-        v-for="(todoItem, index) in this.todoItems" :key="todoItem"
+        v-for="(todoItem, index) in this.todoItems" :key="todoItem.item"
         class="shadow"
       >
-        {{ todoItem }}
+        <span class="checkBtn" :class="{textCompleted: todoItem.completed}" @click="toggleComplete(todoItem)" >
+          <font-awesome-icon icon="fa-solid fa-check" />
+        </span>
+        <span :class="{textCompleted: todoItem.completed}">
+          {{ todoItem.item }}
+        </span>
         <span class="removeBtn" @click="removeTodo(todoItem, index)">
           <font-awesome-icon icon="fa-solid fa-trash-can" />
         </span>
@@ -20,17 +25,20 @@ export default {
     todoItems: [],
   }),
   methods: {
+    toggleComplete(todoItem) {
+      todoItem.completed = !todoItem.completed;
+      localStorage.removeItem(todoItem.item);
+      localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
+    },
     removeTodo(todoItem, index) {
-      console.log('bye');
       localStorage.removeItem(todoItem);
       this.todoItems.splice(index, 1);
     }
   },
   created() {
-    console.log('hi im just created');
     if (localStorage.length > 0) {
       for (let i = 0; i < localStorage.length; i++) {
-        this.todoItems.push(localStorage.key(i));
+        this.todoItems.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
       }
     }
   }

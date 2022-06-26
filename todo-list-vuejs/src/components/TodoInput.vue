@@ -19,8 +19,14 @@ export default {
   }),
   methods: {
     addTodo() {
-      localStorage.setItem(this.todoItem, this.todoItem); 
-      this.clearInput();
+      if (this.todoItem !== '') {
+        const obj = {
+          completed: false,
+          item: this.todoItem
+        };
+        localStorage.setItem(this.todoItem, JSON.stringify(obj)); 
+        this.clearInput();
+      }
     },
     clearInput() {
       this.todoItem = '';
