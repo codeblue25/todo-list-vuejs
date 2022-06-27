@@ -2,7 +2,7 @@
   <div>
     <ul>
       <li 
-        v-for="(todoItem, index) in this.todoItems" :key="todoItem.item"
+        v-for="(todoItem, index) in propsData" :key="todoItem.item"
         class="shadow"
       >
         <span class="checkBtn" :class="{textCompleted: todoItem.completed}" @click="toggleComplete(todoItem)" >
@@ -21,9 +21,7 @@
 
 <script>
 export default {
-  data: () => ({
-    todoItems: [],
-  }),
+  props: ['propsData'],
   methods: {
     toggleComplete(todoItem) {
       todoItem.completed = !todoItem.completed;
@@ -35,13 +33,6 @@ export default {
       this.todoItems.splice(index, 1);
     }
   },
-  created() {
-    if (localStorage.length > 0) {
-      for (let i = 0; i < localStorage.length; i++) {
-        this.todoItems.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
-      }
-    }
-  }
 }
 </script>
 
