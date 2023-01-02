@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ul>
+    <TransitionGroup name="list" tag="ul">
       <li 
         v-for="(todoItem, index) in propsData" :key="todoItem.item"
         class="shadow"
@@ -15,7 +15,7 @@
           <font-awesome-icon icon="fa-solid fa-trash-can" />
         </span>
       </li>
-    </ul>
+    </TransitionGroup>
   </div>
 </template>
 
@@ -66,5 +66,16 @@ li {
   margin-left: auto;
   color: #DE4343;
   cursor: pointer;
+}
+
+/* 리스트 아이템 트랜지션 효과 */
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.5s;
+}
+.list-enter,
+.list-leave-to {
+  opacity: 0;
+  transform: translateY(30px);
 }
 </style>
