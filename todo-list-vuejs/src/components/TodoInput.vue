@@ -9,19 +9,41 @@
       @click="addTodo"
     ><font-awesome-icon icon="fa-solid fa-plus" />
     </span>
+
+    <Modal v-if="showModal" @close="showModal = false">
+      <!-- <template #header>
+        <h3>custom header</h3>
+      </template> -->
+      <h3 slot="header">
+        경고 !
+        <font-awesome-icon icon="closeModalBtn fas fa-times" @click="showModal = false" />
+      </h3>
+      <div slot="body">
+        내용을 입력해주세요
+      </div>
+    </Modal>
+
   </div>
 </template>
 
 <script>
+import Modal from './CommonModal.vue'
+
 export default {
+  components: {
+    'Modal': Modal,
+  },
   data: () => ({
     todoItem: '',
+    showModal: false,
   }),
   methods: {
     addTodo() {
       if (this.todoItem !== '') {
-        this.$emit("addTodoItems", this.todoItem)
+        this.$emit("addTodoItems", this.todoItem);
         this.clearInput();
+      } else {
+        this.showModal = !this.showModal;
       }
     },
     clearInput() {
@@ -55,5 +77,8 @@ input:focus {
 .addBtn {
   color: #fff;
   vertical-align: middle;
+}
+.closeModalBtn {
+  color: #42b983;
 }
 </style>
