@@ -23,10 +23,10 @@
 export default {
   methods: {
     removeTodo(todoItem, index) {
-      this.$store.commit('removeTodoItems', {todoItem, index}) // ES6 문법 적용
+      this.$store.commit('removeTodoItems', {todoItem, index}); // ES6 문법 적용
     },
     toggleComplete(todoItem, index) {
-      this.$store.commit('toggleTodoItems', {todoItem, index}) // ES6 문법 적용
+      this.$store.commit('toggleTodoItems', {todoItem, index}); // ES6 문법 적용
     }
   },
 }

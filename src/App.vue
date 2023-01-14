@@ -1,13 +1,9 @@
 <template>
   <div id="app">
-    <TodoHeader></TodoHeader>
-    <TodoInput></TodoInput>
-    <TodoList
-      :propsData="todoItems"
-    ></TodoList>
-    <TodoFooter
-      @clearTodoItems="clearTodoItems"
-    ></TodoFooter>
+    <TodoHeader />
+    <TodoInput />
+    <TodoList />
+    <TodoFooter />
   </div>
 </template>
 
@@ -25,16 +21,6 @@ export default {
     'TodoList': TodoList,
     'TodoFooter': TodoFooter,
   },
-  data: () => ({
-    todoItems: [],
-  }),
-  methods: {
-    clearTodoItems() {
-      localStorage.clear();
-      this.todoItems = [];
-    }
-  },
-  
 }
 </script>
 
