@@ -26,7 +26,11 @@ export default {
       this.$emit("toggleTodoItems", todoItem, index);
     },
     removeTodo(todoItem, index) {
-      this.$emit("removeTodoItems", todoItem, index);
+      // const obj = {
+      //   todoItem: todoItem,
+      //   index: index
+      // }
+      this.$store.commit('removeTodoItems', {todoItem, index}) // ES6 문법 적용
     }
   },
 }

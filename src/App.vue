@@ -5,7 +5,6 @@
     <TodoList
       :propsData="todoItems"
       @toggleTodoItems="toggleTodoItems"
-      @removeTodoItems="removeTodoItems"
     ></TodoList>
     <TodoFooter
       @clearTodoItems="clearTodoItems"
@@ -36,10 +35,6 @@ export default {
       this.todoItems[index].completed = !this.todoItems[index].completed;
       localStorage.removeItem(value.item);
       localStorage.setItem(value.item, JSON.stringify(value));
-    },
-    removeTodoItems(value, index) {
-      localStorage.removeItem(value.item);
-      this.todoItems.splice(index, 1);
     },
     clearTodoItems() {
       localStorage.clear();
