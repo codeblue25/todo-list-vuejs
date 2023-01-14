@@ -4,7 +4,6 @@
     <TodoInput></TodoInput>
     <TodoList
       :propsData="todoItems"
-      @toggleTodoItems="toggleTodoItems"
     ></TodoList>
     <TodoFooter
       @clearTodoItems="clearTodoItems"
@@ -30,12 +29,6 @@ export default {
     todoItems: [],
   }),
   methods: {
-    toggleTodoItems(value, index) {
-      // value.completed = !value.completed;
-      this.todoItems[index].completed = !this.todoItems[index].completed;
-      localStorage.removeItem(value.item);
-      localStorage.setItem(value.item, JSON.stringify(value));
-    },
     clearTodoItems() {
       localStorage.clear();
       this.todoItems = [];

@@ -22,15 +22,11 @@
 <script>
 export default {
   methods: {
-    toggleComplete(todoItem, index) {
-      this.$emit("toggleTodoItems", todoItem, index);
-    },
     removeTodo(todoItem, index) {
-      // const obj = {
-      //   todoItem: todoItem,
-      //   index: index
-      // }
       this.$store.commit('removeTodoItems', {todoItem, index}) // ES6 문법 적용
+    },
+    toggleComplete(todoItem, index) {
+      this.$store.commit('toggleTodoItems', {todoItem, index}) // ES6 문법 적용
     }
   },
 }
